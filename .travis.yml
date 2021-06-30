@@ -15,7 +15,7 @@ after_success:
   - docker build -t joel/multi-server ./server
   - docker build -t joel/multi-worker ./worker
 
-  - echo "$DOCKER_PASSWORD" | sudo docker login -u "$DOCKER_ID" --password-stdin
+  - echo "$DOCKER_PASSWORD" | sudo docker login docker.io -u "$DOCKER_ID" --password-stdin
 
   - sudo docker push joel/multi-client
   - sudo docker push joel/multi-nginx
