@@ -1,0 +1,36 @@
+{
+    "AWSEBDockerrunVersion":2,
+    "ContainerDefinitions":[
+        {
+            "name":"client",
+            "image":"joelmukono/multi-client",
+            "hostname":"client",
+            "essential":false
+        },
+        {
+            "name":"server",
+            "image":"joelmukono/multi-server",
+            "hostname":"api",
+            "essential":false
+        },
+        {
+            "name":"worker",
+            "image":"joelmukono/multi-worker",
+            "hostname":"worker",
+            "essential":false
+        },
+        {
+            "name":"nginx",
+            "image":"joelmukono/multi-nginx",
+            "essential":true,
+            "portMappings":[
+                {
+                    "hostPort":80,
+                    "containerPort":80
+                }
+            ],
+
+            "links":["client", "server"]
+        }
+    ]
+}
